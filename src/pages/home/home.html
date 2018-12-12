@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title></ion-title>
+    <ion-title text-center>จำนวนสส.</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,13 +10,13 @@
     <ion-row align-item-center text-center>
       <ion-col col-3></ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger">พึงมี</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(score1)">พึงมี</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger">เขต</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(score2)">เขต</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger">สัดส่วน</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(score3)">สัดส่วน</button>
       </ion-col>
     </ion-row>
   </ion-grid>
