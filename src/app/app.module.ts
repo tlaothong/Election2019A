@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ElectoratePage } from '../pages/electorate/electorate';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { ElectoratePage } from '../pages/electorate/electorate';
     ContactPage,
     HomePage,
     TabsPage,
-    ElectoratePage
+
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,6 @@ import { ElectoratePage } from '../pages/electorate/electorate';
     ContactPage,
     HomePage,
     TabsPage,
-    ElectoratePage
   ],
   providers: [
     StatusBar,
