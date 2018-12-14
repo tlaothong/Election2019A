@@ -12,9 +12,16 @@
 
 </ion-header>
 
-
 <ion-content padding>
-  <!-- <div>{{valueFromHome}}</div> -->
-  <iframe width="100%" height="100%" src="https://app.powerbi.com/view?r=eyJrIjoiNTEyYjljODUtOWJjOS00OWEzLWI0MDItY2RhZmJjNzgyMWNiIiwidCI6IjkzNzkzY2VmLTM0MDAtNGJkYi04MWY0LTkyNWNjYjNhNjkyNCIsImMiOjEwfQ%3D%3D"
-    frameborder="0" allowFullScreen="true"></iframe>
+  <div [ngSwitch]="typeScore">
+    <div *ngSwitchCase="1">
+      คะแนนพึงมี
+    </div>
+    <div *ngSwitchCase="2">
+      คะแนนแบ่งเขต
+    </div>
+    <div *ngSwitchCase="3">
+      คะแนนแบบสัดส่วน
+    </div>
+  </div>
 </ion-content>

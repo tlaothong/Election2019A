@@ -15,13 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PoliticalPartyScorePage {
 
-  valueFromHome: string;
+  typeScore: number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.valueFromHome = this.navParams.get('_typeScore');
+    this.typeScore = this.navParams.data._typeScore;
+    console.log(this.typeScore);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PoliticalPartyScorePage');
+    
   }
 
 }

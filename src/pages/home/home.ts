@@ -7,16 +7,17 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  score1: string = "คะแนนพึงมี";
-  score2: string = "คะแนนเขต";
-  score3: string = "คะแนนสัดส่วน";
+  totalScore: number;
+  areaScore: number;
+  partitionScore: number;
 
   constructor(public navCtrl: NavController) {
-
+    this.totalScore = 1;
+    this.areaScore = 2;
+    this.partitionScore = 3;
   }
 
-  goPoliticalScore(typeScore: string) {
+  goPoliticalScore(typeScore: number) {
     this.navCtrl.push("PoliticalPartyScorePage", { _typeScore: typeScore });
   }
-
 }
