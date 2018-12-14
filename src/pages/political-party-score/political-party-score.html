@@ -15,4 +15,15 @@
 
 <ion-content padding>
   <!-- <div>{{valueFromHome}}</div> -->
+  <div [ngSwitch]="typeScore">
+    <div *ngSwitchCase="1">
+      คะแนนพึงมี
+    </div>
+    <div *ngSwitchCase="2">
+      คะแนนแบ่งเขต
+    </div>
+    <div *ngSwitchCase="3">
+      คะแนนแบบสัดส่วน
+    </div>
+  </div>
 </ion-content>

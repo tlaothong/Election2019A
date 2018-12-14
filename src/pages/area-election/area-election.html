@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>AreaElectionPage</ion-title>
+    <ion-title>{{headerAreaScore}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-  <div>{{areaPolitical}}</div>
+
+  <div [ngSwitch]="areaPolitical">
+    <div *ngSwitchCase="1">กทม. เขต 1</div>
+    <div *ngSwitchCase="2">กทม. เขต 2</div>
+    <div *ngSwitchCase="3">กทม. เขต 3</div>
+    <div *ngSwitchCase="4">กทม. เขต 4</div>
+    <div *ngSwitchCase="5">กทม. เขต 5</div>
+    <div *ngSwitchCase="6">กทม. เขต 6</div>
+    <div *ngSwitchCase="7">กทม. เขต 7</div>
+  </div>
 </ion-content>

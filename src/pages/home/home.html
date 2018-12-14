@@ -10,13 +10,13 @@
     <ion-row align-item-center text-center>
       <ion-col col-3></ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" [disabled]="true">พึงมี</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(totalScore)">พึงมี</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" [disabled]="true">เขต</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(areaScore)">เขต</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" [disabled]="true">สัดส่วน</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(partitionScore)">สัดส่วน</button>
       </ion-col>
     </ion-row>
   </ion-grid>

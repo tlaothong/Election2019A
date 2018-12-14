@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { AreaElectionPage } from '../area-election/area-election';
+import { NumberValueAccessor } from '@angular/forms/src/directives';
 
 /**
  * Generated class for the ElectoratePage page.
@@ -15,22 +16,29 @@ import { AreaElectionPage } from '../area-election/area-election';
   templateUrl: 'electorate.html',
 })
 export class ElectoratePage {
-
-  nameArea1: string = "กทม. เขต1";
-  nameArea2: string = "กทม. เขต2";
-  nameArea3: string = "กทม. เขต3";
-  nameArea4: string = "กทม. เขต4";
-  nameArea5: string = "กทม. เขต5";
-  nameArea6: string = "กทม. เขต6";
-  nameArea7: string = "กทม. เขต7";
+  
+  area1 : number;
+  area2 : number;
+  area3 : number;
+  area4 : number;
+  area5 : number;
+  area6 : number;
+  area7 : number;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
+    this.area1 = 1;
+    this.area2 = 2;
+    this.area3 = 3;
+    this.area4 = 4;
+    this.area5 = 5;
+    this.area6 = 6;
+    this.area7 = 7;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ElectoratePage');
   }
 
-  goDetailAreaScore(area: string) {
+  goDetailAreaScore(area: number) {
     this.navCtrl.push("AreaElectionPage", { _area: area });
   }
 
@@ -67,5 +75,4 @@ export class ElectoratePage {
     });
     actionSheet.present();
   }
-
 }
