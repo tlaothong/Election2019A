@@ -24,6 +24,7 @@ export class ElectoratePage {
   area5 : number;
   area6 : number;
   area7 : number;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
     this.area1 = 1;
     this.area2 = 2;
@@ -49,19 +50,16 @@ export class ElectoratePage {
         {
           text: 'เขตที่ชนะขาด',
           handler: () => {
-
           }
         },
         {
           text: 'เขตที่แพ้ขาด',
           handler: () => {
-
           }
         },
         {
           text: 'เขตที่เสมอ',
           handler: () => {
-
           }
         },
         {

@@ -16,13 +16,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PoliticalPartyScorePage {
 
   typeScore: number;
+  headerType: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.typeScore = this.navParams.data._typeScore;
-    console.log(this.typeScore);
+
   }
 
-  ionViewDidLoad() {
-    
+  ionViewDidEnter() {
+    this.typeScore = this.navParams.data._typeScore;
+    switch (this.typeScore) {
+      case 1:
+        this.headerType = "คะแนนพึงมี";
+        break;
+      case 2:
+        this.headerType = "คะแนนแบ่งเขต";
+        break;
+      case 3:
+        this.headerType = "คะแนนสัดส่วน";
+        break;
+      default:
+        break;
+    }
   }
 
 }

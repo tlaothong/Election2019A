@@ -45,8 +45,11 @@ export class AreaElectionPage {
       case 7:
         this.headerAreaScore = "กทม. เขต 7";
         break;
+      default:
+        break;
     }
-
   }
 
 }
+
+
