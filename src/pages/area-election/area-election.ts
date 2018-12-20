@@ -15,39 +15,42 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AreaElectionPage {
 
-  areaPolitical: number;
-  headerAreaScore: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  areaPolitical: string;
+  urlPowerBi : string;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    
   }
 
   ionViewDidEnter() {
-    this.areaPolitical = this.navParams.data._area;
-    switch (this.areaPolitical) {
-      case 1:
-        this.headerAreaScore = "กทม. เขต 1";
-        break;
-      case 2:
-        this.headerAreaScore = "กทม. เขต 2";
-        break;
-      case 3:
-        this.headerAreaScore = "กทม. เขต 3";
-        break;
-      case 4:
-        this.headerAreaScore = "กทม. เขต 4";
-        break;
-      case 5:
-        this.headerAreaScore = "กทม. เขต 5";
-        break;
-      case 6:
-        this.headerAreaScore = "กทม. เขต 6";
-        break;
-      case 7:
-        this.headerAreaScore = "กทม. เขต 7";
-        break;
-      default:
-        break;
-    }
+    this.areaPolitical = this.navParams.data._areaPolitical;
+    console.log(this.areaPolitical);
+
+    // switch (this.areaPolitical) {
+    //   case 1:
+    //     this.headerAreaScore = "กทม. เขต 1";
+    //     break;
+    //   case 2:
+    //     this.headerAreaScore = "กทม. เขต 2";
+    //     break;
+    //   case 3:
+    //     this.headerAreaScore = "กทม. เขต 3";
+    //     break;
+    //   case 4:
+    //     this.headerAreaScore = "กทม. เขต 4";
+    //     break;
+    //   case 5:
+    //     this.headerAreaScore = "กทม. เขต 5";
+    //     break;
+    //   case 6:
+    //     this.headerAreaScore = "กทม. เขต 6";
+    //     break;
+    //   case 7:
+    //     this.headerAreaScore = "กทม. เขต 7";
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
 
 }
