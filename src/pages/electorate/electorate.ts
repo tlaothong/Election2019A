@@ -16,31 +16,24 @@ import { NumberValueAccessor } from '@angular/forms/src/directives';
   templateUrl: 'electorate.html',
 })
 export class ElectoratePage {
-  
-  area1 : number;
-  area2 : number;
-  area3 : number;
-  area4 : number;
-  area5 : number;
-  area6 : number;
-  area7 : number;
-  
+
+  areaPolitical: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
-    this.area1 = 1;
-    this.area2 = 2;
-    this.area3 = 3;
-    this.area4 = 4;
-    this.area5 = 5;
-    this.area6 = 6;
-    this.area7 = 7;
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ElectoratePage');
   }
 
-  goDetailAreaScore(area: number) {
-    this.navCtrl.push("AreaElectionPage", { _area: area });
+  onClick(event) {
+    console.log(event);
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.offsetParent.id;
+    this.areaPolitical = idAttr;
+    this.navCtrl.push("AreaElectionPage", { _areaPolitical: this.areaPolitical });
+    console.log(idAttr);
   }
 
   goFilter() {
