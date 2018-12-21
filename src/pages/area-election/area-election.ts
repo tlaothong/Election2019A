@@ -41,18 +41,6 @@ export class AreaElectionPage {
       filterType: pbi.models.FilterType.BasicFilter
     }
 
-    const basicFilter2: pbi.models.IBasicFilter = {
-      $schema: "http://powerbi.com/product/schema#basic",
-      target: {
-        table: "ScoreArea",
-        column: "Party",
-
-      },
-      operator: "In",
-      values: ['เพื่อไทย'],
-      filterType: pbi.models.FilterType.BasicFilter
-    }
-
     let config: IEmbedConfiguration = {
       type: 'report',
       tokenType: models.TokenType.Embed,
@@ -60,7 +48,7 @@ export class AreaElectionPage {
       embedUrl: embedUrl,
       id: embedReportId,
       permissions: models.Permissions.All,
-      filters: [basicFilter, basicFilter2],
+      filters: [basicFilter],
       settings: {
         filterPaneEnabled: true,
         navContentPaneEnabled: true
