@@ -31,40 +31,13 @@ export class ElectoratePage {
         console.log(this.token);
       }
     );
-
-    this.filter = "GetAll";
-
-  }
-
-  ionViewDidLoad() {
-
   }
 
   ionViewDidEnter() {
-    // if (this.filter == "GetAll") {
     this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetAll")
       .subscribe(data => {
         this.listArea = data;
       });
-    // }
-    // else if (this.filter == "ชนะขาด") {
-    //   this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
-    //     .subscribe(data => {
-    //       this.listArea = data;
-    //     });
-    // }
-    // else if (this.filter == "แพ้ขาด") {
-    //   this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
-    //     .subscribe(data => {
-    //       this.listArea = data;
-    //     });
-    // }
-    // else if (this.filter == "สูสี หนีแพ้") {
-    //   this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
-    //     .subscribe(data => {
-    //       this.listArea = data;
-    //     });
-    // }
   }
 
   onClick(event, tokens) {
