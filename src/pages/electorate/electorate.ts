@@ -20,8 +20,10 @@ export class ElectoratePage {
   areaPolitical: string;
   token: Object;
   listArea: ElectionModel[] = [];
+  filter: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient) {
+
     this.http.get("http://pbiebeded.azurewebsites.net/api/values").subscribe(
       it => {
         this.token = it
@@ -29,19 +31,40 @@ export class ElectoratePage {
         console.log(this.token);
       }
     );
-    this.loadData();
+
+    this.filter = "GetAll";
+
+  }
+
+  ionViewDidLoad() {
+
   }
 
   ionViewDidEnter() {
-    this.loadData();
-  }
-
-  loadData() {
+    // if (this.filter == "GetAll") {
     this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetAll")
       .subscribe(data => {
         this.listArea = data;
-        console.log(this.listArea);
       });
+    // }
+    // else if (this.filter == "ชนะขาด") {
+    //   this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
+    //     .subscribe(data => {
+    //       this.listArea = data;
+    //     });
+    // }
+    // else if (this.filter == "แพ้ขาด") {
+    //   this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
+    //     .subscribe(data => {
+    //       this.listArea = data;
+    //     });
+    // }
+    // else if (this.filter == "สูสี หนีแพ้") {
+    //   this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
+    //     .subscribe(data => {
+    //       this.listArea = data;
+    //     });
+    // }
   }
 
   onClick(event, tokens) {
@@ -55,7 +78,6 @@ export class ElectoratePage {
       tokenid: tokens
 
     });
-    console.log(idAttr);
   }
 
   goFilter() {
@@ -63,18 +85,42 @@ export class ElectoratePage {
       title: 'Filter',
       buttons: [
         {
+          text: 'แสดงทั้งหมด',
+          handler: () => {
+            this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetAll")
+              .subscribe(data => {
+                this.listArea = data;
+              });
+          }
+        },
+        {
           text: 'เขตที่ชนะขาด',
           handler: () => {
+            this.filter = "ชนะขาด";
+            this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
+              .subscribe(data => {
+                this.listArea = data;
+              });
           }
         },
         {
           text: 'เขตที่แพ้ขาด',
           handler: () => {
+            this.filter = "แพ้ขาด";
+            this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
+              .subscribe(data => {
+                this.listArea = data;
+              });
           }
         },
         {
           text: 'เขตที่เสมอ',
           handler: () => {
+            this.filter = "สูสี หนีแพ้";
+            this.http.get<ElectionModel[]>("http://localhost:5000/api/Election/GetFilter/" + this.filter)
+              .subscribe(data => {
+                this.listArea = data;
+              });
           }
         },
         {
