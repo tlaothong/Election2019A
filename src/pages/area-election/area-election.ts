@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as pbi from 'powerbi-client';
 import { models, IEmbedConfiguration } from 'powerbi-client';
+import { LayoutType, ViewMode, BackgroundType } from 'powerbi-models';
 
 /**
  * Generated class for the AreaElectionPage page.
@@ -19,8 +20,8 @@ export class AreaElectionPage {
 
   areaPolitical: string;
   urlPowerBi: string;
-  token:any={};
-  data: any={};
+  token: any = {};
+  data: any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.data = this.navParams.get('tokenid');
     console.log("token");
@@ -64,11 +65,78 @@ export class AreaElectionPage {
       permissions: models.Permissions.All,
       filters: [basicFilter],
       settings: {
-        filterPaneEnabled: true,
-        navContentPaneEnabled: true
-      }
-    };
+        filterPaneEnabled: false,
+        navContentPaneEnabled: false,
+        layoutType: models.LayoutType.Custom,
+        customLayout: {
+          pageSize: {
+            type: models.PageSizeType.Custom
 
+          },
+          displayOption: models.DisplayOption.FitToWidth,
+          pagesLayout: {
+            "ReportSection1": {
+              defaultLayout: {
+                displayState: {
+                  mode: models.VisualContainerDisplayMode.Hidden
+                }
+              },
+              visualsLayout: {
+                "VisualContainer1": {
+                  x: 0,
+                  y: 0,
+                  z: 0,
+                  width: 592,
+                  height: 400,
+                  displayState: {
+                    mode: models.VisualContainerDisplayMode.Visible
+                  }
+                },
+                "VisualContainer2": {
+                  displayState: {
+                    mode: models.VisualContainerDisplayMode.Visible
+                  }
+                },
+              }
+            }
+          }
+        }
+      }
+      // settings: {
+      //   filterPaneEnabled: false,
+      //   navContentPaneEnabled: false,
+      //   layoutType: models.LayoutType.Custom,
+      //   //
+      //   customLayout: {  
+      //     pageSize: {
+      //       type: models.PageSizeType.Custom,
+      //       width: 500,
+      //       height: 1200
+      //     },        
+      //     displayOption: models.DisplayOption.ActualSize,
+      //     pagesLayout: {
+      //       "ReportSection1" : {
+      //         // defaultLayout: {
+      //         //   displayState: {
+      //         //     mode: models.VisualContainerDisplayMode.Hidden
+      //         //   }
+      //         // },
+
+      //         visualsLayout: {
+      //           "VisualContainer1": {
+      //             width: 0,
+      //             height: 0,
+      //             displayState: {
+      //               mode: models.VisualContainerDisplayMode.Visible
+      //             }
+      //           }
+      //         }
+      //       }
+      //     }
+      //     //
+      //   }
+      // }
+    };
     let reportContainer = <HTMLElement>document.getElementById('reportContainer');
     let powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
     let report = powerbi.embed(reportContainer, config);
