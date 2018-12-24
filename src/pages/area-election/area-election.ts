@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import * as pbi from 'powerbi-client';
 import { models, IEmbedConfiguration } from 'powerbi-client';
-import { LayoutType, ViewMode, BackgroundType } from 'powerbi-models';
 
 /**
  * Generated class for the AreaElectionPage page.
@@ -17,12 +16,13 @@ import { LayoutType, ViewMode, BackgroundType } from 'powerbi-models';
   templateUrl: 'area-election.html',
 })
 export class AreaElectionPage {
+  [x: string]: any;
 
   areaPolitical: string;
   urlPowerBi: string;
   token: any = {};
   data: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
     this.data = this.navParams.get('tokenid');
     console.log("token");
     console.log(this.data);
@@ -44,17 +44,6 @@ export class AreaElectionPage {
       values: [this.areaPolitical],
       filterType: pbi.models.FilterType.BasicFilter
     }
-    // const basicFilter2: pbi.models.IBasicFilter = {
-    //   $schema: "http://powerbi.com/product/schema#basic",
-    //   target: {
-    //     table: "ScoreArea",
-    //     column: "Party",
-
-    //   },
-    //   operator: "In",
-    //   values: ["เพื่อไทย"],
-    //   filterType: pbi.models.FilterType.BasicFilter
-    // }
 
     let config: IEmbedConfiguration = {
       type: 'report',
@@ -64,87 +53,38 @@ export class AreaElectionPage {
       id: embedReportId,
       permissions: models.Permissions.All,
       filters: [basicFilter],
+      width: 450,
+      height: 450,
       settings: {
         filterPaneEnabled: false,
         navContentPaneEnabled: false,
-        layoutType: models.LayoutType.Custom,
+        layoutType: models.LayoutType.MobilePortrait,
         customLayout: {
           pageSize: {
-            type: models.PageSizeType.Custom
+            type: models.PageSizeType.Widescreen,
 
           },
-          displayOption: models.DisplayOption.FitToWidth,
+          displayOption: models.DisplayOption.FitToPage,
           pagesLayout: {
-            "ReportSection1": {
-              defaultLayout: {
-                displayState: {
-                  mode: models.VisualContainerDisplayMode.Hidden
-                }
-              },
-              visualsLayout: {
-                "VisualContainer1": {
-                  x: 0,
-                  y: 0,
-                  z: 0,
-                  width: 592,
-                  height: 400,
-                  displayState: {
-                    mode: models.VisualContainerDisplayMode.Visible
-                  }
-                },
-                "VisualContainer2": {
-                  displayState: {
-                    mode: models.VisualContainerDisplayMode.Visible
-                  }
-                },
-              }
-            }
           }
         }
       }
-      // settings: {
-      //   filterPaneEnabled: false,
-      //   navContentPaneEnabled: false,
-      //   layoutType: models.LayoutType.Custom,
-      //   //
-      //   customLayout: {  
-      //     pageSize: {
-      //       type: models.PageSizeType.Custom,
-      //       width: 500,
-      //       height: 1200
-      //     },        
-      //     displayOption: models.DisplayOption.ActualSize,
-      //     pagesLayout: {
-      //       "ReportSection1" : {
-      //         // defaultLayout: {
-      //         //   displayState: {
-      //         //     mode: models.VisualContainerDisplayMode.Hidden
-      //         //   }
-      //         // },
 
-      //         visualsLayout: {
-      //           "VisualContainer1": {
-      //             width: 0,
-      //             height: 0,
-      //             displayState: {
-      //               mode: models.VisualContainerDisplayMode.Visible
-      //             }
-      //           }
-      //         }
-      //       }
-      //     }
-      //     //
-      //   }
-      // }
+
     };
     let reportContainer = <HTMLElement>document.getElementById('reportContainer');
     let powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
     let report = powerbi.embed(reportContainer, config);
     report.off("loaded");
-    report.on("loaded", function () {
-      console.log("Loaded");
-    });
+    // report.on("loaded", function () {
+    //   console.log("Loaded");
+    // });
   }
+
+  // back(){
+  //   // this.navCtrl.pop();
+  //   this.viewCtrl.dismiss();
+  // }
 }
 
 

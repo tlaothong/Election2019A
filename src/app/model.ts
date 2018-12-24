@@ -12,5 +12,5 @@ export class ElectionModel {
 }
 
 export class GlobalVaraible {
-    static host: string = "http://localhost:5000/api/Election/";
+    static host: string = "http://electionvars.azurewebsites.net/api/Election/";
 }
