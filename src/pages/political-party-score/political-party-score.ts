@@ -31,7 +31,7 @@ export class PoliticalPartyScorePage {
         this.headerType = "คะแนนแบ่งเขต";
         break;
       case 3:
-        this.headerType = "คะแนนสัดส่วน";
+        this.headerType = "คะแนนบัญชีรายชื่อ";
         break;
       default:
         break;
