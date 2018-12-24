@@ -31,12 +31,12 @@ export class AreaElectionPage {
   ionViewDidEnter() {
     this.areaPolitical = this.navParams.data._areaPolitical;
     let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=e00e412c-d883-4fdb-a6eb-9bb3f699c1e2&groupId=45f95249-7ae8-4335-899b-d66de3334065';
-    let embedReportId = 'e00e412c-d883-4fdb-a6eb-9bb3f699c1e2';
+    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=f8e570be-3b86-4ba0-8000-280dd77e6bea&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
+    let embedReportId = 'f8e570be-3b86-4ba0-8000-280dd77e6bea';
     const basicFilter: pbi.models.IBasicFilter = {
       $schema: "http://powerbi.com/product/schema#basic",
       target: {
-        table: "ScoreArea",
+        table: "Data",
         column: "NameKad",
 
       },

@@ -118,7 +118,7 @@ export class ElectoratePage {
         {
           text: 'เขตที่สูสี',
           handler: () => {
-            this.filter = "สูสี หนีแพ้";
+            this.filter = "สูสี";
             this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetFilter/" + this.filter)
               .subscribe(data => {
                 this.listArea = data;
