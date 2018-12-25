@@ -1,22 +1,24 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>จำนวนสส.</ion-title>
+    <ion-title text-center>
+      <h2>จำนวนสส.</h2>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="background">
 
   <ion-grid>
     <ion-row align-item-center text-center>
       <ion-col col-3></ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goPoliticalScore(totalScore)">พึงมี</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(totalScore)" class="backgroundButton">พึงมี</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goPoliticalScore(areaScore)">เขต</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(areaScore)" class="backgroundButton">เขต</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goPoliticalScore(partitionScore)">บัญชี</button>
+        <button ion-button outline block color="danger" (click)="goPoliticalScore(partitionScore)" class="backgroundButton">บัญชี</button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -99,7 +101,7 @@
     </ion-row>
   </ion-item>
 
-   <!-- <ion-item>
+  <!-- <ion-item>
     <ion-row align-items-center text-center>
       <ion-col col-3>xxx
         <img class="circle-pic" src="../../assets/imgs/ปชชท.png" />

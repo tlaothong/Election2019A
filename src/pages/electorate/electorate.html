@@ -1,16 +1,18 @@
-<ion-header>
-
+<ion-header  class="backgroundNav" >
   <ion-navbar>
-    <ion-title text-center color="danger">เขตเลือกตั้ง</ion-title>
+    <ion-title text-center color="danger">
+      <h2>เขตเลือกตั้ง</h2>
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
-<ion-content padding>
-  <button ion-button outline block color="danger" (click)="goFilter()">ตัวกรอง</button>
-  <h3>เขตเลือกตั้งทั้งหมด</h3>
+<ion-content padding class="background">
+  <button ion-button outline block color="danger" (click)="goFilter()" class="text" >{{filter}}</button>
+  <h1>เขตเลือกตั้งทั้งหมด</h1>
   <div *ngFor="let area of listArea">
-    <button ion-button outline block (click)="onClick($event,token)" id="{{area.nameArea}}">{{ area.nameArea }}</button>
+    <ion-card padding (click)="onClick($event,token)" id="{{area.nameArea}}" >
+      <h1>{{ area.nameArea }}</h1>
+    </ion-card>
   </div>
 
 </ion-content>
