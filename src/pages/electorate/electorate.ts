@@ -18,18 +18,22 @@ import { ElectionModel } from '../../app/model';
 export class ElectoratePage {
 
   areaPolitical: string;
-  token: Object;
+  token: any={};
   listArea: ElectionModel[] = [];
   filter: string;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient,public modalCtrl: ModalController) {
-
+  groupid: any = {};
+  reportid: any = {};
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient, public modalCtrl: ModalController) {
 
     this.filter = "GetAll"
   }
 
   ionViewDidEnter() {
-    this.http.get("http://pbiebeded.azurewebsites.net/api/values").subscribe(
+    this.groupid = "50ffda63-4985-4fdf-b052-c78cee9263ff";
+    this.reportid = "f8e570be-3b86-4ba0-8000-280dd77e6bea";
+    // http://pbiebeded.azurewebsites.net/api/values/gettoken/groupid/reportid
+    // http://pbiebeded.azurewebsites.net/api/values/gettoken/50ffda63-4985-4fdf-b052-c78cee9263ff/050e1df4-d497-4d73-a8a9-d1c50acc70d1
+    this.http.get("http://pbiebeded.azurewebsites.net/api/values/gettoken/" + this.groupid + "/" + this.reportid).subscribe(
       it => {
         this.token = it
         console.log("this.token");
@@ -71,7 +75,7 @@ export class ElectoratePage {
     this.navCtrl.push("AreaElectionPage", {
       _areaPolitical: this.areaPolitical,
       tokenid: tokens
-      
+
     });
     //
     // const modal = this.modalCtrl.create("AreaElectionPage", {
