@@ -22,10 +22,10 @@ export class ElectoratePage {
   listArea: ElectionModel[] = [];
   filter: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient, public modalCtrl: ModalController) {
 
 
-    this.filter = "GetAll"
+    this.filter = "ตัวกรอง"
   }
 
   ionViewDidEnter() {
@@ -35,8 +35,8 @@ export class ElectoratePage {
         console.log("this.token");
         console.log(this.token);
       }
-    );
-    if (this.filter == "GetAll") {
+    );  
+    if (this.filter == "แสดงทั้งหมด" || this.filter == "ตัวกรอง") {
       this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetAll")
         .subscribe(data => {
           this.listArea = data;
@@ -71,7 +71,7 @@ export class ElectoratePage {
     this.navCtrl.push("AreaElectionPage", {
       _areaPolitical: this.areaPolitical,
       tokenid: tokens
-      
+
     });
     //
     // const modal = this.modalCtrl.create("AreaElectionPage", {
@@ -89,6 +89,7 @@ export class ElectoratePage {
         {
           text: 'แสดงทั้งหมด',
           handler: () => {
+            this.filter = "แสดงทั้งหมด"
             this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetAll")
               .subscribe(data => {
                 this.listArea = data;
