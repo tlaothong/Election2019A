@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { ElectionModel } from '../../app/model';
+import { ElectionModel,GlobalVaraible } from '../../app/model';
+
 
 /**
  * Generated class for the ElectoratePage page.
@@ -29,11 +30,11 @@ export class ElectoratePage {
   }
 
   ionViewDidEnter() {
-    this.groupid = "50ffda63-4985-4fdf-b052-c78cee9263ff";
-    this.reportid = "f8e570be-3b86-4ba0-8000-280dd77e6bea";
+    // this.groupid = "45f95249-7ae8-4335-899b-d66de3334065";
+    // this.reportid = "e00e412c-d883-4fdb-a6eb-9bb3f699c1e2";
     // http://pbiebeded.azurewebsites.net/api/values/gettoken/groupid/reportid
     // http://pbiebeded.azurewebsites.net/api/values/gettoken/50ffda63-4985-4fdf-b052-c78cee9263ff/050e1df4-d497-4d73-a8a9-d1c50acc70d1
-    this.http.get("http://pbiebeded.azurewebsites.net/api/values/gettoken/" + this.groupid + "/" + this.reportid).subscribe(
+    this.http.get(GlobalVaraible.hostGetToken + GlobalVaraible.groupid + "/" + GlobalVaraible.reportid).subscribe(
       it => {
         this.token = it
         console.log("this.token");
@@ -41,25 +42,25 @@ export class ElectoratePage {
       }
     );  
     if (this.filter == "แสดงทั้งหมด" || this.filter == "ตัวกรอง") {
-      this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetAll")
+      this.http.get<ElectionModel[]>(GlobalVaraible.host + "GetAll")
         .subscribe(data => {
           this.listArea = data;
         });
     }
     else if (this.filter == "ชนะขาด") {
-      this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetFilter/" + this.filter)
+      this.http.get<ElectionModel[]>(GlobalVaraible.host + "GetFilter/" + this.filter)
         .subscribe(data => {
           this.listArea = data;
         });
     }
     else if (this.filter == "แพ้ขาด") {
-      this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetFilter/" + this.filter)
+      this.http.get<ElectionModel[]>(GlobalVaraible.host + "GetFilter/" + this.filter)
         .subscribe(data => {
           this.listArea = data;
         });
     }
     else if (this.filter == "สูสี หนีแพ้") {
-      this.http.get<ElectionModel[]>("http://electionvars.azurewebsites.net/api/Election/GetFilter/" + this.filter)
+      this.http.get<ElectionModel[]>(GlobalVaraible.host + "GetFilter/" + this.filter)
         .subscribe(data => {
           this.listArea = data;
         });
