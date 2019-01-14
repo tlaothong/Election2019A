@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import * as pbi from 'powerbi-client';
 import { models, IEmbedConfiguration } from 'powerbi-client';
+import { GlobalVaraible } from '../../app/model';
 
 /**
  * Generated class for the AreaElectionPage page.
@@ -31,8 +32,8 @@ export class AreaElectionPage {
   ionViewDidEnter() {
     this.areaPolitical = this.navParams.data._areaPolitical;
     let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=f8e570be-3b86-4ba0-8000-280dd77e6bea&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
-    let embedReportId = 'f8e570be-3b86-4ba0-8000-280dd77e6bea';
+    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId='+GlobalVaraible.reportid+'&groupId='+GlobalVaraible.groupid;
+    let embedReportId = GlobalVaraible.reportid;
     const basicFilter: pbi.models.IBasicFilter = {
       $schema: "http://powerbi.com/product/schema#basic",
       target: {
