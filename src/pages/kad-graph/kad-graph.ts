@@ -26,8 +26,8 @@ export class KadGraphPage {
 
   ionViewDidEnter() {
     let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=c699f062-a605-481e-9370-6f56d60b6659&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
-    let embedReportId = 'c699f062-a605-481e-9370-6f56d60b6659';
+    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=e3f49c9d-921a-401e-a6d3-0f09008b30b3&groupId=45f95249-7ae8-4335-899b-d66de3334065';
+    let embedReportId = 'e3f49c9d-921a-401e-a6d3-0f09008b30b3';
     let config: IEmbedConfiguration = {
       type: 'report',
       tokenType: models.TokenType.Embed,

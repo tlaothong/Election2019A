@@ -18,10 +18,10 @@ export class HomePage {
   constructor(public navCtrl: NavController, public http: HttpClient) {
   }
   ionViewDidEnter() {
-    this.groupid = "50ffda63-4985-4fdf-b052-c78cee9263ff";
-    this.reportidHaves = "8ea002b8-7f30-4bee-a56d-432acfb5739d";
-    this.reportidKad = "c699f062-a605-481e-9370-6f56d60b6659";
-    this.reportidParty = "084d1e71-9dee-46d4-ac8c-7b30f5bdb7dc";
+    this.groupid = "45f95249-7ae8-4335-899b-d66de3334065";
+    this.reportidHaves = "5b1384d4-9ff1-4009-92c6-d8f2c363bcea";
+    this.reportidKad = "e3f49c9d-921a-401e-a6d3-0f09008b30b3";
+    this.reportidParty = "a0b0e38a-9b59-462d-ad73-26c31fc333be";
     // http://pbiebeded.azurewebsites.net/api/values/gettoken/groupid/reportid
     this.http.get("http://pbiebeded.azurewebsites.net/api/values/gettoken/" + this.groupid + "/" + this.reportidHaves).subscribe(
       it => {
