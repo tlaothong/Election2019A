@@ -8,10 +8,10 @@
 
 <ion-content padding class="background">
   <button ion-button outline block color="danger" (click)="goFilter()" class="text" >{{filter}}</button>
-  <h1>เขตเลือกตั้งทั้งหมด</h1>
+  <h4><b>เขตเลือกตั้งทั้งหมด</b></h4>
   <div *ngFor="let area of listArea">
-    <ion-card padding (click)="onClick($event,token)" id="{{area.nameArea}}" >
-      <h1>{{ area.nameArea }}</h1>
+    <ion-card padding (click)="onClick($event,token,area.nameArea)" id="{{area.nameArea}}" >
+      <h2>{{ area.nameArea }}</h2>
     </ion-card>
   </div>
 

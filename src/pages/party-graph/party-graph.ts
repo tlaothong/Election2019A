@@ -26,8 +26,8 @@ export class PartyGraphPage {
 
   ionViewDidEnter() {
     let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=a0b0e38a-9b59-462d-ad73-26c31fc333be&groupId=45f95249-7ae8-4335-899b-d66de3334065';
-    let embedReportId = 'a0b0e38a-9b59-462d-ad73-26c31fc333be';
+    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=084d1e71-9dee-46d4-ac8c-7b30f5bdb7dc&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
+    let embedReportId = '084d1e71-9dee-46d4-ac8c-7b30f5bdb7dc';
     let config: IEmbedConfiguration = {
       type: 'report',
       tokenType: models.TokenType.Embed,

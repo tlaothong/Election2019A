@@ -25,12 +25,16 @@ export class AreaElectionPage {
   data: any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
     this.data = this.navParams.get('tokenid');
+    this.areaPolitical = this.navParams.get('nameArea');
+    
     console.log("token");
     console.log(this.data);
   }
 
   ionViewDidEnter() {
-    this.areaPolitical = this.navParams.data._areaPolitical;
+    // this.areaPolitical = this.navParams.data._areaPolitical;
+    console.log("this.areaPolitical");
+    console.log(this.areaPolitical);
     let accessToken = this.data;
     let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId='+GlobalVaraible.reportid+'&groupId='+GlobalVaraible.groupid;
     let embedReportId = GlobalVaraible.reportid;
