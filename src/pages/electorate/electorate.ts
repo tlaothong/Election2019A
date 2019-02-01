@@ -67,7 +67,7 @@ export class ElectoratePage {
     }
   }
 
-  onClick(event, tokens) {
+  onClick(event, tokens,nameArea) {
     console.log(event);
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.offsetParent.id;
@@ -75,7 +75,8 @@ export class ElectoratePage {
     this.token = tokens
     this.navCtrl.push("AreaElectionPage", {
       _areaPolitical: this.areaPolitical,
-      tokenid: tokens
+      tokenid: tokens,
+      nameArea: nameArea
 
     });
     //

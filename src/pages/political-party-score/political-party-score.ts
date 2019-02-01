@@ -24,8 +24,8 @@ export class PoliticalPartyScorePage {
 
   ionViewDidEnter() {
     let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=5b1384d4-9ff1-4009-92c6-d8f2c363bcea&groupId=45f95249-7ae8-4335-899b-d66de3334065';
-    let embedReportId = '5b1384d4-9ff1-4009-92c6-d8f2c363bcea';
+    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=8ea002b8-7f30-4bee-a56d-432acfb5739d&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
+    let embedReportId = '8ea002b8-7f30-4bee-a56d-432acfb5739d';
     let config: IEmbedConfiguration = {
       type: 'report',
       tokenType: models.TokenType.Embed,
