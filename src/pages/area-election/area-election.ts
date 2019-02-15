@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import * as pbi from 'powerbi-client';
-import { models, IEmbedConfiguration } from 'powerbi-client';
-import { GlobalVaraible } from '../../app/model';
-
+import { Chart } from 'chart.js';
+import { HttpClient } from '@angular/common/http';
+import { ElectionModel, otherScore } from '../../app/model';
 /**
  * Generated class for the AreaElectionPage page.
  *
@@ -17,71 +16,84 @@ import { GlobalVaraible } from '../../app/model';
   templateUrl: 'area-election.html',
 })
 export class AreaElectionPage {
-  [x: string]: any;
-
   areaPolitical: string;
   urlPowerBi: string;
-  token: any = {};
+  namekad: string;
   data: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
-    this.data = this.navParams.get('tokenid');
-    this.areaPolitical = this.navParams.get('nameArea');
-    
-    console.log("token");
-    console.log(this.data);
+  chart: [any];
+  listScoreParty: ElectionModel[] = [];
+  other: otherScore = new otherScore;
+  listOther: any[];
+
+  @ViewChild('barCanvas') barCanvas;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public http: HttpClient) {
+    this.areaPolitical = this.navParams.get('idArea');
+    this.namekad = this.navParams.get('nameArea');
+    console.log("areaPolitical");
+    console.log(this.areaPolitical);
   }
 
   ionViewDidEnter() {
-    // this.areaPolitical = this.navParams.data._areaPolitical;
-    console.log("this.areaPolitical");
-    console.log(this.areaPolitical);
-    let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId='+GlobalVaraible.reportid+'&groupId='+GlobalVaraible.groupid;
-    let embedReportId = GlobalVaraible.reportid;
-    const basicFilter: pbi.models.IBasicFilter = {
-      $schema: "http://powerbi.com/product/schema#basic",
-      target: {
-        table: "Data",
-        column: "NameKad",
-
-      },
-      operator: "In",
-      values: [this.areaPolitical],
-      filterType: pbi.models.FilterType.BasicFilter
-    }
-
-    let config: IEmbedConfiguration = {
-      type: 'report',
-      tokenType: models.TokenType.Embed,
-      accessToken: accessToken,
-      embedUrl: embedUrl,
-      id: embedReportId,
-      permissions: models.Permissions.All,
-      filters: [basicFilter],
-      settings: {
-        filterPaneEnabled: false,
-        navContentPaneEnabled: false,
-        layoutType: models.LayoutType.MobilePortrait,
-        customLayout: {
-          pageSize: {
-            type: models.PageSizeType.Widescreen,
-
-          },
-          displayOption: models.DisplayOption.FitToPage,
-          pagesLayout: {
+    this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAreaTable2/" + this.areaPolitical).subscribe(
+      it => {
+        this.listScoreParty = it
+        console.log("this.tokenHaves");
+        console.log(this.listScoreParty);
+        let count = 0;
+        this.listOther = [];
+        this.listScoreParty.forEach(data => {
+          if (count > 4) {
+            this.listOther.push(data);
           }
-        }
-      }
+          count += 1;
+        });
+        this.other = { name: "อื่นๆ", score: 0 };
+        // this.other = { name: "อื่นๆ", score: 0 };
+        this.listOther.forEach(data => {
+          this.other.score += data.score;
+        });
+        this.chart = new Chart(this.barCanvas.nativeElement, {
+          type: 'bar',
+          data: {
+            // labels: ["BJP", "INC", "AAP", "CPI", "CPI-M", "NCP"],
+            labels: [this.listScoreParty[0].nameParty, this.listScoreParty[1].nameParty, this.listScoreParty[2].nameParty
+              , this.listScoreParty[3].nameParty, this.listScoreParty[4].nameParty, this.other.name],
+            datasets: [{
+              label: ['คะแนนของ'],
+              // data: [200, 50, 30, 15, 20, 34],
+              data: [this.listScoreParty[0].score, this.listScoreParty[1].score, this.listScoreParty[2].score
+                , this.listScoreParty[3].score, this.listScoreParty[4].score, this.other.score],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+        });
+      });
 
-
-    };
-    let reportContainer = <HTMLElement>document.getElementById('reportContainer');
-    let powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
-    let report = powerbi.embed(reportContainer, config);
-    report.off("loaded");
-    // report.on("loaded", function () {
-    //   console.log("Loaded");
-    // });
   }
 
   // back(){

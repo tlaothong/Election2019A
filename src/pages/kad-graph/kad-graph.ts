@@ -25,34 +25,34 @@ export class KadGraphPage {
   }
 
   ionViewDidEnter() {
-    let accessToken = this.data;
-    let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=c699f062-a605-481e-9370-6f56d60b6659&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
-    let embedReportId = 'c699f062-a605-481e-9370-6f56d60b6659';
-    let config: IEmbedConfiguration = {
-      type: 'report',
-      tokenType: models.TokenType.Embed,
-      accessToken: accessToken,
-      embedUrl: embedUrl,
-      id: embedReportId,
-      permissions: models.Permissions.All,
-      settings: {
-        filterPaneEnabled: false,
-        navContentPaneEnabled: false,
-        layoutType: models.LayoutType.MobilePortrait,
-        customLayout: {
-          pageSize: {
-            type: models.PageSizeType.Widescreen,
-          },
-          displayOption: models.DisplayOption.FitToPage,
-          pagesLayout: {
-          }
-        }
-      }
-    };
-    let reportContainer = <HTMLElement>document.getElementById('reportContainer');
-    let powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
-    let report = powerbi.embed(reportContainer, config);
-    report.off("loaded");
+    // let accessToken = this.data;
+    // let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=c699f062-a605-481e-9370-6f56d60b6659&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
+    // let embedReportId = 'c699f062-a605-481e-9370-6f56d60b6659';
+    // let config: IEmbedConfiguration = {
+    //   type: 'report',
+    //   tokenType: models.TokenType.Embed,
+    //   accessToken: accessToken,
+    //   embedUrl: embedUrl,
+    //   id: embedReportId,
+    //   permissions: models.Permissions.All,
+    //   settings: {
+    //     filterPaneEnabled: false,
+    //     navContentPaneEnabled: false,
+    //     layoutType: models.LayoutType.MobilePortrait,
+    //     customLayout: {
+    //       pageSize: {
+    //         type: models.PageSizeType.Widescreen,
+    //       },
+    //       displayOption: models.DisplayOption.FitToPage,
+    //       pagesLayout: {
+    //       }
+    //     }
+    //   }
+    // };
+    // let reportContainer = <HTMLElement>document.getElementById('reportContainer');
+    // let powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
+    // let report = powerbi.embed(reportContainer, config);
+    // report.off("loaded");
 
   }
 
