@@ -32,13 +32,6 @@ export class KadGraphPage {
     this.listScoreParty = this.navParams.get('_listScoreParty');
     this.listScoreParty.sort((a, b) => b.areaScore - a.areaScore);
     this.listScoreOther = this.listScoreParty.slice(5);
-    // let count = 0;
-    // this.listScoreParty.forEach(data => {
-    //   if (count > 4) {
-    //     this.listScoreOther.push(data);
-    //   }
-    //   count += 1;
-    // });
     console.log(this.listScoreOther);
 
     this.other = { name: "อื่นๆ", score: 0 };

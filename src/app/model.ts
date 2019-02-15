@@ -9,6 +9,23 @@ export class ScoreParty {
     urlImg: string;
 }
 
+export class ScoreArea {
+    id: string;
+    idArea: string;
+    idParty: string;
+    nameArea: string;
+    nameInitial: string;
+    nameParty: string;
+    nameRegister: string;
+    noRegister: string;
+    score: number;
+    source: number;
+    status: boolean;
+    tags: string[];
+    statusEdit: boolean;
+    statusAreaEdit: boolean;
+}
+
 export class otherScore {
     name: string;
     score: number;

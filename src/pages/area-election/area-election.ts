@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
-import { otherScore } from '../../app/model';
+import { otherScore, ScoreArea } from '../../app/model';
 /**
  * Generated class for the AreaElectionPage page.
  *
@@ -21,7 +21,7 @@ export class AreaElectionPage {
   namekad: string;
   data: any = {};
   chart: [any];
-  listScoreParty: ElectionModel[] = [];
+  listScoreParty: ScoreArea[] = [];
   other: otherScore = new otherScore;
   listOther: any[];
 
@@ -34,7 +34,7 @@ export class AreaElectionPage {
   }
 
   ionViewDidEnter() {
-    this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAreaTable2/" + this.areaPolitical).subscribe(
+    this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAreaTable2/" + this.areaPolitical).subscribe(
       it => {
         this.listScoreParty = it
         console.log("this.tokenHaves");
