@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
-import { ElectionModel, otherScore } from '../../app/model';
+import { otherScore } from '../../app/model';
 /**
  * Generated class for the AreaElectionPage page.
  *
@@ -93,13 +93,7 @@ export class AreaElectionPage {
           }
         });
       });
-
   }
-
-  // back(){
-  //   // this.navCtrl.pop();
-  //   this.viewCtrl.dismiss();
-  // }
 }
 
 

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import * as pbi from 'powerbi-client';
-import { models, IEmbedConfiguration } from 'powerbi-client';
+import { ScoreParty, otherScore } from '../../app/model';
+import { Chart } from 'chart.js';
 /**
  * Generated class for the PoliticalPartyScorePage page.
  *
@@ -15,45 +15,73 @@ import { models, IEmbedConfiguration } from 'powerbi-client';
   templateUrl: 'political-party-score.html',
 })
 export class PoliticalPartyScorePage {
-  data: any = {};
+
+  listScoreParty: ScoreParty[];
+  listScoreOther: ScoreParty[];
+  other: otherScore = new otherScore;
+  chart: [any];
+  @ViewChild('barCanvas') barCanvas;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.data = this.navParams.get('data01');
-    console.log("tokenid1");
-    console.log(this.data);
+
   }
 
   ionViewDidEnter() {
-    // let accessToken = this.data;
-    // let embedUrl = 'https://app.powerbi.com/reportEmbed?reportId=8ea002b8-7f30-4bee-a56d-432acfb5739d&groupId=50ffda63-4985-4fdf-b052-c78cee9263ff';
-    // let embedReportId = '8ea002b8-7f30-4bee-a56d-432acfb5739d';
-    // let config: IEmbedConfiguration = {
-    //   type: 'report',
-    //   tokenType: models.TokenType.Embed,
-    //   accessToken: accessToken,
-    //   embedUrl: embedUrl,
-    //   id: embedReportId,
-    //   permissions: models.Permissions.All,
-    //   settings: {
-    //     filterPaneEnabled: false,
-    //     navContentPaneEnabled: false,
-    //     layoutType: models.LayoutType.MobilePortrait,
-    //     customLayout: {
-    //       pageSize: {
-    //         type: models.PageSizeType.Widescreen,
-    //       },
-    //       displayOption: models.DisplayOption.FitToPage,
-    //       pagesLayout: {
-    //       }
-    //     }
-    //   }
-    // };
-    // let reportContainer = <HTMLElement>document.getElementById('reportContainer');
-    // let powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory);
-    // let report = powerbi.embed(reportContainer, config);
-    // report.off("loaded");
+    this.listScoreParty = this.navParams.get('_listScoreParty');
+    this.listScoreOther = [];
+    let count = 0;
+    this.listScoreParty.forEach(data => {
+      if (count > 4) {
+        this.listScoreOther.push(data);
+      }
+      count += 1;
+    });
+    console.log(this.listScoreOther);
 
-    //////////////////////////////////
- 
+    this.other = { name: "อื่นๆ", score: 0 };
+    this.listScoreOther.forEach(data => {
+      this.other.score += data.totalScore;
+    });
+    console.log(this.other.score);
+    this.chart = new Chart(this.barCanvas.nativeElement, {
+      type: 'bar',
+      data: {
+        // labels: ["BJP", "INC", "AAP", "CPI", "CPI-M", "NCP"],
+        labels: [this.listScoreParty[0].partyName, this.listScoreParty[1].partyName, this.listScoreParty[2].partyName
+          , this.listScoreParty[3].partyName, this.listScoreParty[4].partyName, this.other.name],
+        datasets: [{
+          label: ['คะแนนพึงมี'],
+          // data: [200, 50, 30, 15, 20, 34],
+          data: [this.listScoreParty[0].totalScore, this.listScoreParty[1].totalScore, this.listScoreParty[2].totalScore
+            , this.listScoreParty[3].totalScore, this.listScoreParty[4].totalScore, this.other.score],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
   }
 
 }

@@ -10,7 +10,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpClientModule,HttpClient } from '@angular/common/http'
+import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { PoliticalPartyScorePage } from '../pages/political-party-score/political-party-score';
+import { KadGraphPage } from '../pages/kad-graph/kad-graph';
+import { PartyGraphPage } from '../pages/party-graph/party-graph';
 @NgModule({
   declarations: [
     MyApp,
@@ -18,6 +21,9 @@ import { HttpClientModule,HttpClient } from '@angular/common/http'
     ContactPage,
     HomePage,
     TabsPage,
+    PoliticalPartyScorePage,
+    KadGraphPage,
+    PartyGraphPage
 
   ],
   imports: [
@@ -32,12 +38,15 @@ import { HttpClientModule,HttpClient } from '@angular/common/http'
     ContactPage,
     HomePage,
     TabsPage,
+    PoliticalPartyScorePage,
+    KadGraphPage,
+    PartyGraphPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     HttpClient,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
