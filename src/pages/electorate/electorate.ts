@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { ElectionModel, GlobalVaraible } from '../../app/model';
+import { GlobalVaraible, ScoreArea } from '../../app/model';
 
 
 /**
@@ -19,7 +19,7 @@ import { ElectionModel, GlobalVaraible } from '../../app/model';
 export class ElectoratePage {
 
   areaPolitical: string;
-  listArea: ElectionModel[] = [];
+  listArea: ScoreArea[] = [];
   filter: string;
   groupid: any = {};
   reportid: any = {};
@@ -31,34 +31,34 @@ export class ElectoratePage {
   ionViewDidEnter() {
 
     if (this.filter == "แสดงทั้งหมด" || this.filter == "ตัวกรอง") {
-      this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2")
+      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2")
         .subscribe(data => {
           this.listArea = data;
           console.log(data);
-          
+
         });
     }
     else if (this.filter == "ชนะ") {
-      this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
+      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
         .subscribe(data => {
           this.listArea = data;
         });
     }
     else if (this.filter == "แพ้") {
-      this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
+      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
         .subscribe(data => {
           this.listArea = data;
         });
     }
     else if (this.filter == "สูสี หนีแพ้") {
-      this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
+      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
         .subscribe(data => {
           this.listArea = data;
         });
     }
   }
 
-  onClick(event, idArea,nameArea) {
+  onClick(event, idArea, nameArea) {
     console.log(event);
     var target = event.target || event.srcElement || event.currentTarget;
     var idAttr = target.offsetParent.id;
@@ -73,7 +73,7 @@ export class ElectoratePage {
 
   goFilter() {
     console.log("Hello");
-    
+
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Filter',
       buttons: [
@@ -81,7 +81,7 @@ export class ElectoratePage {
           text: 'แสดงทั้งหมด',
           handler: () => {
             this.filter = "แสดงทั้งหมด"
-            this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2")
+            this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2")
               .subscribe(data => {
                 this.listArea = data;
               });
@@ -91,7 +91,7 @@ export class ElectoratePage {
           text: 'เขตที่ชนะขาด',
           handler: () => {
             this.filter = "ชนะ";
-            this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
+            this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
               .subscribe(data => {
                 this.listArea = data;
               });
@@ -101,7 +101,7 @@ export class ElectoratePage {
           text: 'เขตที่แพ้ขาด',
           handler: () => {
             this.filter = "แพ้";
-            this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
+            this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
               .subscribe(data => {
                 this.listArea = data;
               });
