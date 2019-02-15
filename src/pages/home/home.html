@@ -12,92 +12,26 @@
     <ion-row align-item-center text-center>
       <ion-col col-3></ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goPoliticalScore(tokenid01)">พึงมี</button>
+        <button ion-button outline block color="danger" (click)="goHaveScore()">พึงมี</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goKadGraph(tokenid02)">เขต</button>
+        <button ion-button outline block color="danger" (click)="goAreaScoreGraph()">เขต</button>
       </ion-col>
       <ion-col ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goPartyGraph(tokenid03)">บัญชี</button>
+        <button ion-button outline block color="danger" (click)="goPartyListGraph()">บัญชี</button>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
-  <ion-item>
+  <ion-item *ngFor="let scoreParty of listScoreParty">
     <ion-row align-items-center text-center>
       <ion-col col-3>
-        <img class="circle-pic" src="../../assets/imgs/พท.png" />
+        <img class="circle-pic" [src]=scoreParty.urlImg />
       </ion-col>
-      <ion-col col-3>210</ion-col>
-      <ion-col col-3>210</ion-col>
-      <ion-col col-3>0</ion-col>
-    </ion-row>
-  </ion-item>
-
-  <ion-item>
-    <ion-row align-items-center text-center>
-      <ion-col col-3>
-        <img class="circle-pic" src="../../assets/imgs/ปชป.png" />
-      </ion-col>
-      <ion-col col-3>115</ion-col>
-      <ion-col col-3>93</ion-col>
-      <ion-col col-3>22</ion-col>
-    </ion-row>
-  </ion-item>
-
-  <ion-item>
-    <ion-row align-items-center text-center>
-      <ion-col col-3>
-        <img class="circle-pic" src="../../assets/imgs/ทษช.png" />
-      </ion-col>
-      <ion-col col-3>66</ion-col>
-      <ion-col col-3>0</ion-col>
-      <ion-col col-3>66</ion-col>
-    </ion-row>
-  </ion-item>
-
-  <ion-item>
-    <ion-row align-items-center text-center>
-      <ion-col col-3>
-        <img class="circle-pic" src="../../assets/imgs/ปชช.png" />
-      </ion-col>
-      <ion-col col-3>34</ion-col>
-      <ion-col col-3>5</ion-col>
-      <ion-col col-3>29</ion-col>
-    </ion-row>
-  </ion-item>
-
-  <ion-item>
-    <ion-row align-items-center text-center>
-      <ion-col col-3>
-        <img class="circle-pic" src="../../assets/imgs/ภจท.png" />
-      </ion-col>
-      <ion-col col-3>27</ion-col>
-      <ion-col col-3>21</ion-col>
-      <ion-col col-3>6</ion-col>
-    </ion-row>
-  </ion-item>
-
-  <ion-item>
-    <ion-row align-items-center text-center>
-      <ion-col col-3>
-        <img class="circle-pic" src="../../assets/imgs/อคม.png" />
-      </ion-col>
-      <ion-col col-3>25</ion-col>
-      <ion-col col-3>1</ion-col>
-      <ion-col col-3>24</ion-col>
-    </ion-row>
-  </ion-item>
-
-  <!-- อื่นๆ -->
-  <ion-item>
-    <ion-row align-items-center text-center>
-      <ion-col col-3>
-        อื่นๆ
-      </ion-col>
-      <ion-col col-3>23</ion-col>
-      <ion-col col-3>20</ion-col>
-      <ion-col col-3>3</ion-col>
+      <ion-col col-3>{{scoreParty.totalScore}}</ion-col>
+      <ion-col col-3>{{scoreParty.areaScore}}</ion-col>
+      <ion-col col-3>{{scoreParty.nameListScore}}</ion-col>
     </ion-row>
   </ion-item>
 </ion-content>

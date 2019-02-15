@@ -1,69 +1,40 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { ScoreParty, GlobalVaraible } from '../../app/model';
+import { PoliticalPartyScorePage } from '../political-party-score/political-party-score';
+import { KadGraphPage } from '../kad-graph/kad-graph';
+import { PartyGraphPage } from '../party-graph/party-graph';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  tokenHaves: any = {};
-  tokenKad: any = {};
-  tokenParty: any = {};
-  groupid: any = {};
-  reportidHaves: any = {};
-  reportidKad: any = {};
-  reportidParty: any = {};
 
+  listScoreParty: ScoreParty[];
+  urlImg: string;
   constructor(public navCtrl: NavController, public http: HttpClient) {
   }
+
   ionViewDidEnter() {
-    this.groupid = "50ffda63-4985-4fdf-b052-c78cee9263ff";
-    this.reportidHaves = "8ea002b8-7f30-4bee-a56d-432acfb5739d";
-    this.reportidKad = "c699f062-a605-481e-9370-6f56d60b6659";
-    this.reportidParty = "084d1e71-9dee-46d4-ac8c-7b30f5bdb7dc";
-    // http://pbiebeded.azurewebsites.net/api/values/gettoken/groupid/reportid
-    this.http.get("http://pbiebeded.azurewebsites.net/api/values/gettoken/" + this.groupid + "/" + this.reportidHaves).subscribe(
-      it => {
-        this.tokenHaves = it
-        console.log("this.tokenHaves");
-        console.log(this.tokenHaves);
-      }
-    );
-    //
-    this.http.get("http://pbiebeded.azurewebsites.net/api/values/gettoken/" + this.groupid + "/" + this.reportidKad).subscribe(
-      it => {
-        this.tokenKad = it
-        console.log("this.reportidKad");
-        console.log(this.tokenKad);
-      }
-    );
-    // //
-    this.http.get("http://pbiebeded.azurewebsites.net/api/values/gettoken/" + this.groupid + "/" + this.reportidParty).subscribe(
-      it => {
-        this.tokenParty = it
-        console.log("this.reportidParty");
-        console.log(this.tokenParty);
-      }
-    );
+    this.listScoreParty = [];
+    this.http.get<ScoreParty[]>(GlobalVaraible.host + "GetApp1AllScoreParty")
+      .subscribe(data => {
+        this.listScoreParty = data;
+        this.listScoreParty.forEach(data => {
+          data.urlImg = "../../assets/imgs/" + data.idParty + ".png";
+        });
+      });
   }
 
-  goPoliticalScore(tokenid01) {
-    tokenid01 = this.tokenHaves 
-    this.navCtrl.push("PoliticalPartyScorePage", {
-      data01: tokenid01
-    });
+  goHaveScore() {
+    this.navCtrl.push(PoliticalPartyScorePage, { _listScoreParty: this.listScoreParty });
   }
-  goKadGraph(tokenid02) {
-    tokenid02 =  this.tokenKad 
-    this.navCtrl.push("KadGraphPage", {
-      data02: tokenid02
-    });
+  goAreaScoreGraph() {
+    this.navCtrl.push(KadGraphPage, { _listScoreParty: this.listScoreParty });
   }
-  goPartyGraph(tokenid03) {
-    tokenid03 = this.tokenParty
-    this.navCtrl.push("PartyGraphPage", {
-      data03: tokenid03
-    });
+  goPartyListGraph() {
+    this.navCtrl.push(PartyGraphPage, { _listScoreParty: this.listScoreParty });
   }
 }
