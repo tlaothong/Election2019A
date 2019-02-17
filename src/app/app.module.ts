@@ -14,6 +14,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { PoliticalPartyScorePage } from '../pages/political-party-score/political-party-score';
 import { KadGraphPage } from '../pages/kad-graph/kad-graph';
 import { PartyGraphPage } from '../pages/party-graph/party-graph';
+import { AreaElectionPage } from '../pages/area-election/area-election';
 @NgModule({
   declarations: [
     MyApp,
@@ -23,7 +24,8 @@ import { PartyGraphPage } from '../pages/party-graph/party-graph';
     TabsPage,
     PoliticalPartyScorePage,
     KadGraphPage,
-    PartyGraphPage
+    PartyGraphPage,
+    AreaElectionPage
 
   ],
   imports: [
@@ -40,7 +42,8 @@ import { PartyGraphPage } from '../pages/party-graph/party-graph';
     TabsPage,
     PoliticalPartyScorePage,
     KadGraphPage,
-    PartyGraphPage
+    PartyGraphPage,
+    AreaElectionPage
   ],
   providers: [
     StatusBar,

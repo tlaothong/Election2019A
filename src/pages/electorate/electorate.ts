@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { GlobalVaraible, ScoreArea } from '../../app/model';
-
+import { AreaElectionPage } from '../area-election/area-election';
 
 /**
  * Generated class for the ElectoratePage page.
@@ -18,116 +18,50 @@ import { GlobalVaraible, ScoreArea } from '../../app/model';
 })
 export class ElectoratePage {
 
-  areaPolitical: string;
-  listArea: ScoreArea[] = [];
+  listArea: ScoreArea[];
+  listFilter: string[];
   filter: string;
-  groupid: any = {};
-  reportid: any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient, public modalCtrl: ModalController) {
 
-    this.filter = "ตัวกรอง"
   }
 
   ionViewDidEnter() {
+    this.listArea = [];
+    this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
+      .subscribe(data => {
+        this.listArea = data;
+        console.log(this.listArea);
 
-    if (this.filter == "แสดงทั้งหมด" || this.filter == "ตัวกรอง") {
-      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2")
-        .subscribe(data => {
-          this.listArea = data;
-          console.log(data);
+      });
+    this.http.get<string[]>(GlobalVaraible.host + "GetAllTag")
+      .subscribe(data => {
+        this.listFilter = data;
+        console.log(this.listFilter);
 
-        });
-    }
-    else if (this.filter == "ชนะ") {
-      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
-        .subscribe(data => {
-          this.listArea = data;
-        });
-    }
-    else if (this.filter == "แพ้") {
-      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
-        .subscribe(data => {
-          this.listArea = data;
-        });
-    }
-    else if (this.filter == "สูสี หนีแพ้") {
-      this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
-        .subscribe(data => {
-          this.listArea = data;
-        });
-    }
+      });;
   }
 
-  onClick(event, idArea, nameArea) {
-    console.log(event);
-    var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.offsetParent.id;
-    this.areaPolitical = idAttr;
-    this.navCtrl.push("AreaElectionPage", {
-      _areaPolitical: this.areaPolitical,
-      idArea: idArea,
-      nameArea: nameArea,
-
-    });
+  GoDetailArea(area: ScoreArea) {
+    this.navCtrl.push(AreaElectionPage, { _area: area });
   }
 
   goFilter() {
-    console.log("Hello");
+    this.listArea = [];
+    if (this.filter != "all") {
+      this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaWithTag/" + this.filter)
+        .subscribe(data => {
+          this.listArea = data;
+          console.log(this.listArea);
 
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Filter',
-      buttons: [
-        {
-          text: 'แสดงทั้งหมด',
-          handler: () => {
-            this.filter = "แสดงทั้งหมด"
-            this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2")
-              .subscribe(data => {
-                this.listArea = data;
-              });
-          }
-        },
-        {
-          text: 'เขตที่ชนะขาด',
-          handler: () => {
-            this.filter = "ชนะ";
-            this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
-              .subscribe(data => {
-                this.listArea = data;
-              });
-          }
-        },
-        {
-          text: 'เขตที่แพ้ขาด',
-          handler: () => {
-            this.filter = "แพ้";
-            this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
-              .subscribe(data => {
-                this.listArea = data;
-              });
-          }
-        },
-        // {
-        //   text: 'เขตที่สูสี',
-        //   handler: () => {
-        //     this.filter = "สูสี";
-        //     this.http.get<ElectionModel[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAllAreaTable2" + this.filter)
-        //       .subscribe(data => {
-        //         this.listArea = data;
-        //       });
-        //   }
-        // },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    actionSheet.present();
-    console.log("OK");
-
+        });
+      console.log(this.filter);
+    }
+    else {
+      this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
+        .subscribe(data => {
+          this.listArea = data;
+          console.log(this.listArea);
+        });
+    }
   }
 }
