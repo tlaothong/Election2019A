@@ -21,10 +21,14 @@ export class AreaElectionPage {
   other: otherScore = new otherScore;
   listOther: any[];
   area: ScoreArea = new ScoreArea;
+  data: any;
 
   @ViewChild('barCanvas') barCanvas;
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public http: HttpClient) {
-    // this.idArea = this.navParams.get('idArea');
+    this.data = this.navParams.get('_area');
+    console.log("this.data");
+    console.log(this.data);
+    
     // this.namekad = this.navParams.get('nameArea');
   }
 
