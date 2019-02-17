@@ -25,7 +25,7 @@ export class ElectoratePage {
 
   }
 
-  ionViewDidEnter() {
+  ionViewDidLoad() {
     this.listArea = [];
     this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
       .subscribe(data => {
