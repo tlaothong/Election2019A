@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
-import { otherScore, ScoreArea } from '../../app/model';
+import { otherScore, ScoreArea, GlobalVaraible } from '../../app/model';
 /**
  * Generated class for the AreaElectionPage page.
  *
@@ -16,37 +16,26 @@ import { otherScore, ScoreArea } from '../../app/model';
   templateUrl: 'area-election.html',
 })
 export class AreaElectionPage {
-  areaPolitical: string;
-  urlPowerBi: string;
-  namekad: string;
-  data: any = {};
   chart: [any];
   listScoreParty: ScoreArea[] = [];
   other: otherScore = new otherScore;
   listOther: any[];
+  area: ScoreArea = new ScoreArea;
 
   @ViewChild('barCanvas') barCanvas;
   constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, public http: HttpClient) {
-    this.areaPolitical = this.navParams.get('idArea');
-    this.namekad = this.navParams.get('nameArea');
-    console.log("areaPolitical");
-    console.log(this.areaPolitical);
+    // this.idArea = this.navParams.get('idArea');
+    // this.namekad = this.navParams.get('nameArea');
   }
 
   ionViewDidEnter() {
-    this.http.get<ScoreArea[]>("https://electionvars.azurewebsites.net/api/ElectionV3/GetAreaTable2/" + this.areaPolitical).subscribe(
-      it => {
-        this.listScoreParty = it
-        console.log("this.tokenHaves");
+
+    this.area = this.navParams.get('_area');
+    this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaTable2/" + this.area.idArea).subscribe(
+      data => {
+        this.listScoreParty = data;
         console.log(this.listScoreParty);
-        let count = 0;
-        this.listOther = [];
-        this.listScoreParty.forEach(data => {
-          if (count > 4) {
-            this.listOther.push(data);
-          }
-          count += 1;
-        });
+        this.listOther = this.listScoreParty.slice(5);
         this.other = { name: "อื่นๆ", score: 0 };
         // this.other = { name: "อื่นๆ", score: 0 };
         this.listOther.forEach(data => {
@@ -59,7 +48,7 @@ export class AreaElectionPage {
             labels: [this.listScoreParty[0].nameParty, this.listScoreParty[1].nameParty, this.listScoreParty[2].nameParty
               , this.listScoreParty[3].nameParty, this.listScoreParty[4].nameParty, this.other.name],
             datasets: [{
-              label: ['คะแนนของ'],
+              label: ['คะแนนของแต่ละพรรคใน' + this.area.nameArea],
               // data: [200, 50, 30, 15, 20, 34],
               data: [this.listScoreParty[0].score, this.listScoreParty[1].score, this.listScoreParty[2].score
                 , this.listScoreParty[3].score, this.listScoreParty[4].score, this.other.score],

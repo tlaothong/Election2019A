@@ -1,4 +1,4 @@
-<ion-header  class="backgroundNav" >
+<ion-header class="backgroundNav">
   <ion-navbar>
     <ion-title text-center color="danger">
       <h2>เขตเลือกตั้ง</h2>
@@ -7,10 +7,20 @@
 </ion-header>
 
 <ion-content padding class="background">
-  <button ion-button outline block color="danger" (click)="goFilter()" class="text" >{{filter}}</button>
+  <ion-list>
+    <ion-item>
+      <ion-label>ตัวกรอง</ion-label>
+      <ion-select [(ngModel)]="filter" (ionChange)="goFilter()">
+        <ion-option value="all">ทั้งหมด</ion-option>
+        <ion-option *ngFor="let filters of listFilter" value="{{filters}}">{{filters}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <!-- <button ion-button outline block color=" danger" (click)="goFilter()" class="text">{{filter}}</button> -->
   <h4><b>เขตเลือกตั้งทั้งหมด</b></h4>
   <div *ngFor="let area of listArea">
-    <ion-card padding (click)="onClick($event,area.idArea,area.nameArea)" id="{{area.nameArea}}" >
+    <ion-card padding (click)="GoDetailArea(area)">
       <h2>{{ area.nameArea }}</h2>
     </ion-card>
   </div>
