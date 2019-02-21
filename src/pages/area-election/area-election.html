@@ -33,31 +33,31 @@
       <ion-col text-center col-4>
         ผู้สมัคร
       </ion-col>
-      <ion-col text-left col-4>
+      <ion-col text-center col-4>
         คะแนน
       </ion-col>
     </ion-row>
     <div *ngFor="let data of listScoreParty;let i = index" class="bgTabalcol2 bgTabalcolxx">
       <ion-row *ngIf="i < 5">
-        <ion-col col-4 text-center align-self-center>
+        <ion-col col-4 text-left align-self-center>
           {{data.nameParty}}
         </ion-col>
         <ion-col col-4 text-center align-self-center>
           {{data.nameRegister}}
         </ion-col>
-        <ion-col col-4 text-left align-self-center>
+        <ion-col col-4 text-center align-self-center>
           {{data.score | number}}
         </ion-col>
       </ion-row>
     </div>
 
     <ion-row class="bgTabalcol2">
-      <ion-col col-4 text-center>
+      <ion-col col-4 text-left>
         {{other.name}}
       </ion-col>
       <ion-col col-4 text-center>
       </ion-col>
-      <ion-col col-4 text-left>
+      <ion-col col-4 text-center>
         {{other.score | number}}
       </ion-col>
     </ion-row>

@@ -48,7 +48,9 @@ export class AreaElectionPage {
         this.chart = new Chart(this.barCanvas.nativeElement, {
           type: 'bar',
           data: {
-            // labels: ["BJP", "INC", "AAP", "CPI", "CPI-M", "NCP"],
+            // labels: ["กกออกกกกก", "กกออกกกกก", "กกออกกกกก", "กกออกกกกก", "กกออกกกกก", "สวยยรา"],
+          //   labels:["dddddddddddddddddddddddddddddddddddddddddddd","eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          // "gggggggggggggggggggggggggggggggggggggg","ffffffffffffffffffffffffffffffffff","ttttttttttttttttttttttjjjj","fewgehqheh"],
             labels: [this.listScoreParty[0].nameParty, this.listScoreParty[1].nameParty, this.listScoreParty[2].nameParty
               , this.listScoreParty[3].nameParty, this.listScoreParty[4].nameParty, this.other.name],
             datasets: [{
