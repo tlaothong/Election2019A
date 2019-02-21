@@ -46,8 +46,8 @@ export class PoliticalPartyScorePage {
       type: 'bar',
       data: {
         // labels: ["BJP", "INC", "AAP", "CPI", "CPI-M", "NCP"],
-        labels: [this.listScoreParty[0].partyName, this.listScoreParty[1].partyName, this.listScoreParty[2].partyName
-          , this.listScoreParty[3].partyName, this.listScoreParty[4].partyName, this.other.name],
+        labels: [this.listScoreParty[0].nameInitial, this.listScoreParty[1].nameInitial, this.listScoreParty[2].nameInitial
+          , this.listScoreParty[3].nameInitial, this.listScoreParty[4].nameInitial, this.other.name],
         datasets: [{
           label: ['คะแนนพึงมี'],
           // data: [200, 50, 30, 15, 20, 34],
