@@ -2,6 +2,7 @@ export class ScoreParty {
     id: string;
     idParty: string;
     partyName: string;
+    nameInitial: string;
     totalScore: number;
     haveScore: number;
     haveScoreDigit: number;

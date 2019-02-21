@@ -41,21 +41,16 @@ export class AreaElectionPage {
         console.log(this.listScoreParty);
         this.listOther = this.listScoreParty.slice(5);
         this.other = { name: "อื่นๆ", score: 0 };
-        // this.other = { name: "อื่นๆ", score: 0 };
         this.listOther.forEach(data => {
           this.other.score += data.score;
         });
         this.chart = new Chart(this.barCanvas.nativeElement, {
           type: 'bar',
           data: {
-            // labels: ["กกออกกกกก", "กกออกกกกก", "กกออกกกกก", "กกออกกกกก", "กกออกกกกก", "สวยยรา"],
-          //   labels:["dddddddddddddddddddddddddddddddddddddddddddd","eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-          // "gggggggggggggggggggggggggggggggggggggg","ffffffffffffffffffffffffffffffffff","ttttttttttttttttttttttjjjj","fewgehqheh"],
-            labels: [this.listScoreParty[0].nameParty, this.listScoreParty[1].nameParty, this.listScoreParty[2].nameParty
-              , this.listScoreParty[3].nameParty, this.listScoreParty[4].nameParty, this.other.name],
+            labels: [this.listScoreParty[0].nameInitial, this.listScoreParty[1].nameInitial, this.listScoreParty[2].nameInitial
+              , this.listScoreParty[3].nameInitial, this.listScoreParty[4].nameInitial, this.other.name],
             datasets: [{
               label: ['คะแนนของแต่ละพรรคใน' + this.area.nameArea],
-              // data: [200, 50, 30, 15, 20, 34],
               data: [this.listScoreParty[0].score, this.listScoreParty[1].score, this.listScoreParty[2].score
                 , this.listScoreParty[3].score, this.listScoreParty[4].score, this.other.score],
               backgroundColor: [
