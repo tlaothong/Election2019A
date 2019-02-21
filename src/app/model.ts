@@ -3,6 +3,8 @@ export class ScoreParty {
     idParty: string;
     partyName: string;
     totalScore: number;
+    haveScore: number;
+    haveScoreDigit: number;
     areaScore: number;
     nameListScore: number;
     percentScore: number;

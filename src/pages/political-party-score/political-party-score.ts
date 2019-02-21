@@ -39,7 +39,7 @@ export class PoliticalPartyScorePage {
 
     this.other = { name: "อื่นๆ", score: 0 };
     this.listScoreOther.forEach(data => {
-      this.other.score += data.totalScore;
+      this.other.score += data.haveScore;
     });
     console.log(this.other.score);
     this.chart = new Chart(this.barCanvas.nativeElement, {
@@ -51,8 +51,8 @@ export class PoliticalPartyScorePage {
         datasets: [{
           label: ['คะแนนพึงมี'],
           // data: [200, 50, 30, 15, 20, 34],
-          data: [this.listScoreParty[0].totalScore, this.listScoreParty[1].totalScore, this.listScoreParty[2].totalScore
-            , this.listScoreParty[3].totalScore, this.listScoreParty[4].totalScore, this.other.score],
+          data: [this.listScoreParty[0].haveScore, this.listScoreParty[1].haveScore, this.listScoreParty[2].haveScore
+            , this.listScoreParty[3].haveScore, this.listScoreParty[4].haveScore, this.other.score],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
