@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title text-center>
-      <h2>จำนวนสส.</h2>
+      <h2>จำนวน สส. พึงมี</h2>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -12,24 +12,24 @@
     <ion-row align-item-center text-center>
       <ion-col col-3></ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goHaveScore()">พึงมี</button>
+        <button ion-button outline block color="danger" class="backgroundButton" (click)="goHaveScore()">พึงมี</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goAreaScoreGraph()">เขต</button>
+        <button ion-button outline block color="danger" class="backgroundButton" (click)="goAreaScoreGraph()">เขต</button>
       </ion-col>
       <ion-col ion-col col-3>
-        <button ion-button outline block color="danger" (click)="goPartyListGraph()">บัญชี</button>
+        <button ion-button outline block color="danger" class="backgroundButton" (click)="goPartyListGraph()">บัญชี</button>
       </ion-col>
     </ion-row>
 
   </ion-grid>
 
-  <ion-item *ngFor="let scoreParty of listScoreParty">
+  <ion-item *ngFor="let scoreParty of listScoreParty" class="background">
     <ion-row align-items-center text-center>
       <ion-col col-3>
         <img class="circle-pic" [src]=scoreParty.urlImg />
       </ion-col>
-      <ion-col col-3>{{scoreParty.totalScore}}</ion-col>
+      <ion-col class="fontBold" col-3>{{scoreParty.totalScore}}</ion-col>
       <ion-col col-3>{{scoreParty.areaScore}}</ion-col>
       <ion-col col-3>{{scoreParty.nameListScore}}</ion-col>
     </ion-row>
