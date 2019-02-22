@@ -34,7 +34,7 @@ export class ElectoratePage {
         console.log(this.listArea);
 
       });
-    this.http.get<string[]>(GlobalVaraible.host + "GetAllTag")
+    this.http.get<string[]>(GlobalVaraible.host + "GetAllTagTable2")
       .subscribe(data => {
         this.listFilter = data;
         console.log(this.listFilter);
@@ -49,7 +49,7 @@ export class ElectoratePage {
   goFilter() {
     this.listArea = [];
     if (this.filter != "all") {
-      this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaWithTag/" + this.filter)
+      this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaWithTagTable2/" + this.filter)
         .subscribe(data => {
           this.listArea = data;
           console.log(this.listArea);
