@@ -22,6 +22,7 @@ export class HomePage {
     this.http.get<ScoreParty[]>(GlobalVaraible.host + "GetApp1AllScoreParty")
       .subscribe(data => {
         this.listScoreParty = data;
+        console.log(this.listScoreParty);
         this.listScoreParty.forEach(data => {
           data.urlImg = "../../assets/imgs/" + data.idParty + ".png";
         });

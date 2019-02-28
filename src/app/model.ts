@@ -9,6 +9,7 @@ export class ScoreParty {
     areaScore: number;
     nameListScore: number;
     percentScore: number;
+    statusAllies: string;
     urlImg: string;
 }
 
