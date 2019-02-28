@@ -15,10 +15,12 @@
         <button ion-button outline block color="danger" class="backgroundButton" (click)="goHaveScore()">พึงมี</button>
       </ion-col>
       <ion-col col-3>
-        <button ion-button outline block color="danger" class="backgroundButton" (click)="goAreaScoreGraph()">เขต</button>
+        <button ion-button outline block color="danger" class="backgroundButton"
+          (click)="goAreaScoreGraph()">เขต</button>
       </ion-col>
       <ion-col ion-col col-3>
-        <button ion-button outline block color="danger" class="backgroundButton" (click)="goPartyListGraph()">บัญชี</button>
+        <button ion-button outline block color="danger" class="backgroundButton"
+          (click)="goPartyListGraph()">บัญชี</button>
       </ion-col>
     </ion-row>
 
@@ -26,7 +28,10 @@
 
   <ion-item *ngFor="let scoreParty of listScoreParty" class="background">
     <ion-row align-items-center text-center>
-      <ion-col col-3>
+      <ion-col col-1>
+        {{scoreParty.statusAllies}}
+      </ion-col>
+      <ion-col col-2>
         <img class="circle-pic" [src]=scoreParty.urlImg />
       </ion-col>
       <ion-col class="fontBold" col-3>{{scoreParty.haveScore}}</ion-col>
