@@ -20,6 +20,7 @@ export class ElectoratePage {
 
   listArea: ScoreArea[];
   listShowArea: ScoreArea[];
+  listGetAreaWithTag: ScoreArea[];
   listFilter: string[];
   filter: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient, public modalCtrl: ModalController) {
@@ -33,15 +34,16 @@ export class ElectoratePage {
     this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
       .subscribe(data => {
         this.listArea = data;
-        this.listShowArea = this.listArea;
+        console.log("GetAllAreaTable2");
         console.log(this.listArea);
+        this.listShowArea = this.listArea;
+        
 
       });
     this.http.get<string[]>(GlobalVaraible.host + "GetAllTagTable2")
       .subscribe(data => {
         this.listFilter = data;
         console.log(this.listFilter);
-
       });;
   }
 
@@ -51,24 +53,37 @@ export class ElectoratePage {
 
   goFilter() {
     //this.listArea = [];
+    this.listGetAreaWithTag = [];
+    console.log(this.filter);
     if (this.filter != "all") {
-      this.listShowArea = this.listArea.filter(it => it.tags.some(i => i == this.filter));
-      console.log(this.listArea.filter(it => it.tags.some(i => i == this.filter)));
+      this.listArea.forEach(data => {
+        if (data.tags.some(it => it == this.filter)) {
+          this.listGetAreaWithTag.push(data);
+        }
+      });
+      console.log("listGetAreaWithTag :");
+      console.log(this.listGetAreaWithTag);
+      this.listShowArea = [];
+      this.listShowArea = this.listGetAreaWithTag;
+      console.log(this.listShowArea);
+      // this.listShowArea = this.listArea.filter(it => it.tags.some(i => i == this.filter));
+      // console.log(this.listArea.filter(it => it.tags.some(i => i == this.filter)));
       // this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaWithTag/" +  + this.filter)
       //   .subscribe(data => {
       //     this.listArea = data;
       //     console.log(this.listArea);
 
       //   });
-      console.log(this.filter);
     }
     else {
-      this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
-        .subscribe(data => {
-          this.listArea = data;
-          this.listShowArea = this.listArea;
-          console.log(this.listArea);
-        });
+      this.listShowArea = this.listArea;
+      console.log(this.listShowArea);
+      // this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
+      //   .subscribe(data => {
+      //     this.listArea = data;
+      //     this.listShowArea = this.listArea;
+      //     console.log(this.listArea);
+      //   });
     }
   }
 }
