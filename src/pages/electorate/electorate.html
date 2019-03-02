@@ -19,7 +19,7 @@
 
   <!-- <button ion-button outline block color=" danger" (click)="goFilter()" class="text">{{filter}}</button> -->
   <h4><b>เขตเลือกตั้งทั้งหมด</b></h4>
-  <div *ngFor="let area of listArea">
+  <div *ngFor="let area of listShowArea">
     <ion-card padding (click)="GoDetailArea(area)">
       <h2>{{ area.nameArea }}</h2>
     </ion-card>

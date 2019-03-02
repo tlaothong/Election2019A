@@ -19,6 +19,7 @@ import { AreaElectionPage } from '../area-election/area-election';
 export class ElectoratePage {
 
   listArea: ScoreArea[];
+  listShowArea: ScoreArea[];
   listFilter: string[];
   filter: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient, public modalCtrl: ModalController) {
@@ -28,9 +29,11 @@ export class ElectoratePage {
   ionViewDidEnter() {
     this.filter = "all"
     this.listArea = [];
+    this.listShowArea = [];
     this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
       .subscribe(data => {
         this.listArea = data;
+        this.listShowArea = this.listArea;
         console.log(this.listArea);
 
       });
@@ -47,20 +50,23 @@ export class ElectoratePage {
   }
 
   goFilter() {
-    this.listArea = [];
+    //this.listArea = [];
     if (this.filter != "all") {
-      this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaWithTagTable2/" + this.filter)
-        .subscribe(data => {
-          this.listArea = data;
-          console.log(this.listArea);
+      this.listShowArea = this.listArea.filter(it => it.tags.some(i => i == this.filter));
+      console.log(this.listArea.filter(it => it.tags.some(i => i == this.filter)));
+      // this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAreaWithTag/" +  + this.filter)
+      //   .subscribe(data => {
+      //     this.listArea = data;
+      //     console.log(this.listArea);
 
-        });
+      //   });
       console.log(this.filter);
     }
     else {
       this.http.get<ScoreArea[]>(GlobalVaraible.host + "GetAllAreaTable2")
         .subscribe(data => {
           this.listArea = data;
+          this.listShowArea = this.listArea;
           console.log(this.listArea);
         });
     }
