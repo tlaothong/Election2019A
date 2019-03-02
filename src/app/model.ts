@@ -38,6 +38,6 @@ export class otherScore {
 }
 
 export class GlobalVaraible {
-    //static host: string = "http://electionvars.azurewebsites.net/api/ElectionV3/";
-    static host: string = "http://localhost:5000/api/ElectionV3/";
+    static host: string = "http://electionvars.azurewebsites.net/api/ElectionV3/";
+    //static host: string = "http://localhost:5000/api/ElectionV3/";
 }
