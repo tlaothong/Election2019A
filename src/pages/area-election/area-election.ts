@@ -77,13 +77,6 @@ export class AreaElectionPage {
             }else {
               color = "#7F7E7F"
             }
-            // else if (xxx[i].nameInitial == "ชทพ.") {
-            //   color = "#00008B"
-            // } else if (xxx[i].nameInitial == "ปชป.") {
-            //   color = "#00BFFF"
-            // } else {
-            //   color = "#FF33FE"
-            // }
             console.log("color");
             console.log(color);
             console.log("xxxx");
