@@ -5,6 +5,7 @@ import { ScoreParty, GlobalVaraible } from '../../app/model';
 import { PoliticalPartyScorePage } from '../political-party-score/political-party-score';
 import { KadGraphPage } from '../kad-graph/kad-graph';
 import { PartyGraphPage } from '../party-graph/party-graph';
+import { TeamPage } from '../team/team';
 
 @Component({
   selector: 'page-home',
@@ -37,5 +38,8 @@ export class HomePage {
   }
   goPartyListGraph() {
     this.navCtrl.push(PartyGraphPage, { _listScoreParty: this.listScoreParty });
+  }
+  goTeam(){
+    this.navCtrl.push(TeamPage, { _listScoreParty: this.listScoreParty });
   }
 }

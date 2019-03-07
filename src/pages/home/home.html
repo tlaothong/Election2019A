@@ -10,7 +10,11 @@
 
   <ion-grid>
     <ion-row align-item-center text-center>
-      <ion-col col-3></ion-col>
+      <ion-col col-3>
+        <button ion-button icon-only outline color="danger" (click)="goTeam()">
+          <ion-icon name="md-list-box"></ion-icon>
+        </button>
+      </ion-col>
       <ion-col col-3>
         <button ion-button outline block color="danger" class="backgroundButton" (click)="goHaveScore()">พึงมี</button>
       </ion-col>
@@ -28,23 +32,23 @@
 
   <ion-item *ngFor="let scoreParty of listScoreParty" class="background">
     <ion-row align-items-center text-center>
-      <ion-col col-2 text-left>
+    
         <div *ngIf="scoreParty.statusAllies == 'ลังเล'" style="color:gold ">
-          {{scoreParty.statusAllies}}
+          <!-- {{scoreParty.statusAllies}} -->
         </div>
         <div *ngIf="scoreParty.statusAllies == 'ฝ่ายเรา'" style="color:red ">
-          {{scoreParty.statusAllies}}
+          <!-- {{scoreParty.statusAllies}} -->
         </div>
         <div *ngIf="scoreParty.statusAllies == 'ตรงข้าม'" style="color:green ">
-          {{scoreParty.statusAllies}}
+          <!-- {{scoreParty.statusAllies}} -->
         </div>
-      </ion-col>
-      <ion-col col-4>
+      
+      <ion-col col-3>
         <img class="circle-pic" [src]=scoreParty.urlImg />
       </ion-col>
-      <ion-col class="fontBold" col-2>{{scoreParty.haveScore}}</ion-col>
-      <ion-col col-2>{{scoreParty.areaScore}}</ion-col>
-      <ion-col col-2>{{scoreParty.nameListScore}}</ion-col>
+      <ion-col class="fontBold" col-3>{{scoreParty.haveScore}}</ion-col>
+      <ion-col col-3>{{scoreParty.areaScore}}</ion-col>
+      <ion-col col-3>{{scoreParty.nameListScore}}</ion-col>
     </ion-row>
   </ion-item>
 </ion-content>
