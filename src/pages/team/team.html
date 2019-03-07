@@ -1,0 +1,103 @@
+<!--
+  Generated template for the TeamPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ฝ่ายเรา / ตรงข้าม / ลังเล</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="background">
+  <ion-grid>
+    <ion-row align-item-center text-center>
+      <ion-col col-3>
+
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button outline block color="danger" class="backgroundButton">พึงมี</button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button outline block color="danger" class="backgroundButton">เขต</button>
+      </ion-col>
+      <ion-col ion-col col-3>
+        <button ion-button outline block color="danger" class="backgroundButton">บัญชี</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  
+    <ion-row align-items-center text-center (click)="showPartyFriend()">
+      <div col-3 style="color:rgb(0, 0, 0) " text-left>ฝ่ายเรา</div>
+      <ion-col class="fontBold" col-3>{{totalHaveFriend}}</ion-col>
+      <ion-col col-3>{{totalAreaFriend}}</ion-col>
+      <ion-col col-3>{{totalNameListFriend}}</ion-col>
+    </ion-row>
+    <br>
+
+    <ion-item *ngIf="statusFriend == true" class="background">
+    <ion-row *ngFor="let friends of friend">
+        <div col-2 text-left>
+          <ion-icon style="color:red " name="md-square"></ion-icon>
+        </div>
+        <ion-col col-4>
+            <img class="circle-pic" [src]=friends.urlImg />
+          </ion-col>
+        <ion-col class="fontBold" col-2>{{friends.haveScore}}</ion-col>
+      <ion-col col-2>{{friends.areaScore}}</ion-col>
+      <ion-col col-2>{{friends.nameListScore}}</ion-col>
+    </ion-row>
+  </ion-item>
+
+    <ion-row align-items-center text-center (click)="showPartyEnemy()">
+      <div col-3 text-left style="color:rgb(7, 7, 7) ">ตรงข้าม</div>
+      <ion-col class="fontBold" col-3>{{totalHaveEnemy}}</ion-col>
+      <ion-col col-3>{{totalAreaEnemy}}</ion-col>
+      <ion-col col-3>{{totalNameListEnemy}}</ion-col>
+    </ion-row>
+    <br>
+
+    <ion-item *ngIf="statusEnemy == true" class="background">
+        <ion-row *ngFor="let en of enemy">
+            <div col-2 text-left>
+                <ion-icon style="color:green " name="md-square"></ion-icon>
+            </div>
+            <ion-col col-4>
+                <img class="circle-pic" [src]=en.urlImg />
+              </ion-col>
+            <ion-col class="fontBold" col-2>{{en.haveScore}}</ion-col>
+          <ion-col col-2>{{en.areaScore}}</ion-col>
+          <ion-col col-2>{{en.nameListScore}}</ion-col>
+        </ion-row>
+      </ion-item>
+
+    <ion-row align-items-center text-center (click)="showPartyHesitate()">
+      <div col-3 text-left style="color:rgb(24, 24, 23) ">ลังเล</div>
+      <ion-col class="fontBold" col-3>{{totalHaveHesitate}}</ion-col>
+      <ion-col col-3>{{totalAreaHesitate}}</ion-col>
+      <ion-col col-3>{{totalNameListHesitate}}</ion-col>
+    </ion-row>
+    <br>
+
+    <ion-item *ngIf="statusHesitate == true" class="background">
+        <ion-row *ngFor="let hes of hesitate">
+            <div col-2 text-left>
+                <ion-icon style="color:gold " name="md-square"></ion-icon>
+              </div>
+              <ion-col col-4>
+                  <img class="circle-pic" [src]=hes.urlImg />
+                </ion-col>
+            <ion-col class="fontBold" col-2>{{hes.haveScore}}</ion-col>
+          <ion-col col-2>{{hes.areaScore}}</ion-col>
+          <ion-col col-2>{{hes.nameListScore}}</ion-col>
+        </ion-row>
+      </ion-item>
+ 
+
+</ion-content>

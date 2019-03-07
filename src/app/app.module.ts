@@ -15,6 +15,7 @@ import { PoliticalPartyScorePage } from '../pages/political-party-score/politica
 import { KadGraphPage } from '../pages/kad-graph/kad-graph';
 import { PartyGraphPage } from '../pages/party-graph/party-graph';
 import { AreaElectionPage } from '../pages/area-election/area-election';
+import { TeamPage } from '../pages/team/team';
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +26,8 @@ import { AreaElectionPage } from '../pages/area-election/area-election';
     PoliticalPartyScorePage,
     KadGraphPage,
     PartyGraphPage,
-    AreaElectionPage
+    AreaElectionPage,
+    TeamPage
 
   ],
   imports: [
@@ -43,7 +45,8 @@ import { AreaElectionPage } from '../pages/area-election/area-election';
     PoliticalPartyScorePage,
     KadGraphPage,
     PartyGraphPage,
-    AreaElectionPage
+    AreaElectionPage,
+    TeamPage
   ],
   providers: [
     StatusBar,
