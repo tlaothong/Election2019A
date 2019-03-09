@@ -24,29 +24,36 @@ export class HomePage {
   ionViewDidEnter() {
     this.listScoreParty = [];
     this.listScoreParty2 = [];
+    this.listScoreOther = [];
+    this.listScoreOther = [];
     this.http.get<ScoreParty[]>(GlobalVaraible.host + "GetApp1AllScoreParty")
       .subscribe(data => {
         this.listScoreParty = data;
+        console.log("ei1");
+        console.log(this.listScoreParty);
         this.listScoreParty2 = this.listScoreParty.filter(it => it.idParty == "034" || it.idParty == "077" || it.idParty == "001"
           || it.idParty == "192" || it.idParty == "177" || it.idParty == "063"
           || it.idParty == "055" || it.idParty == "145" || it.idParty == "181"
           || it.idParty == "149" || it.idParty == "176" || it.idParty == "187");
-        console.log(this.listScoreParty);
+        console.log("eiei1");
+        console.log(this.listScoreParty2);
         this.listScoreParty2.forEach(data => {
           data.urlImg = "../../assets/imgs/" + data.idParty + ".png";
         });
+        this.listScoreOther = this.listScoreParty.filter(it => it.idParty != "034" && it.idParty != "077" && it.idParty != "001"
+          && it.idParty != "192" && it.idParty != "177" && it.idParty != "063"
+          && it.idParty != "055" && it.idParty != "145" && it.idParty != "181"
+          && it.idParty != "149" && it.idParty != "176" && it.idParty != "187");
+        console.log("eiei2");
+        console.log(this.listScoreOther);
+        this.otherScore = { haveScore: 0, scoreArea: 0, scorePartyList: 0, scorePercent: 0, isChecked: true, status: true };
+        this.listScoreOther.forEach(data => {
+          this.otherScore.haveScore += data.haveScore;
+          this.otherScore.scoreArea += data.areaScore;
+          this.otherScore.scorePartyList += data.nameListScore;
+          this.otherScore.scorePercent += data.percentScore;
+        });
       });
-    this.listScoreOther = this.listScoreParty.filter(it => it.idParty != "034" && it.idParty != "077" && it.idParty != "001"
-      && it.idParty != "192" && it.idParty != "177" && it.idParty != "063"
-      && it.idParty != "055" && it.idParty != "145" && it.idParty != "181"
-      && it.idParty != "149" && it.idParty != "176" && it.idParty != "187");
-    this.otherScore = { haveScore: 0, scoreArea: 0, scorePartyList: 0, scorePercent: 0, isChecked: true, status: true };
-    this.listScoreOther.forEach(data => {
-      this.otherScore.haveScore += data.haveScore;
-      this.otherScore.scoreArea += data.areaScore;
-      this.otherScore.scorePartyList += data.nameListScore;
-      this.otherScore.scorePercent += data.percentScore;
-    });
   }
 
   goHaveScore() {
