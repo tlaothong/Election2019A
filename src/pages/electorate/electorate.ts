@@ -18,9 +18,9 @@ import { AreaElectionPage } from '../area-election/area-election';
 })
 export class ElectoratePage {
 
-  listArea: ScoreArea[];
-  listShowArea: ScoreArea[];
-  listGetAreaWithTag: ScoreArea[];
+  listArea: ScoreArea[]=[];
+  listShowArea: ScoreArea[]=[];
+  listGetAreaWithTag: ScoreArea[]=[];
   listFilter: string[];
   filter: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public http: HttpClient, public modalCtrl: ModalController) {
@@ -37,8 +37,6 @@ export class ElectoratePage {
         console.log("GetAllAreaTable2");
         console.log(this.listArea);
         this.listShowArea = this.listArea;
-        
-
       });
     this.http.get<string[]>(GlobalVaraible.host + "GetAllTagTable2")
       .subscribe(data => {
@@ -61,6 +59,7 @@ export class ElectoratePage {
           this.listGetAreaWithTag.push(data);
         }
       });
+      //this.listGetAreaWithTag = this.listArea.filter(it => it.tags.some(i => i == this.filter));
       console.log("listGetAreaWithTag :");
       console.log(this.listGetAreaWithTag);
       this.listShowArea = [];
