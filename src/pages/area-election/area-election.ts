@@ -50,33 +50,40 @@ export class AreaElectionPage {
         function getRandomColorHex(index) {
           for (let i = 0; i < xxx.length; i++) {
             var color = "";
-            if (xxx[index].nameInitial == "อ.น.ค.") {
+            if (xxx[index].nameInitial == "อนค.") {
               color = "#FF7F00"
-            }else if (xxx[index].nameInitial == "ภท.") {
+            } else if (xxx[index].nameInitial == "ภท.") {
               color = "#00008B"
-            }else if(xxx[index].nameInitial =="ปชป."){
+            } else if (xxx[index].nameInitial == "ปชป.") {
               color = "#00BFFF"
-            }else if(xxx[index].nameInitial =="ทษช."){
+            } else if (xxx[index].nameInitial == "ทษช.") {
               color = "#0000EE"
-            }else if(xxx[index].nameInitial =="สร."){
+            } else if (xxx[index].nameInitial == "สร.") {
               color = "#27408B"
-            }else if(xxx[index].nameInitial =="พท."){
+            } else if (xxx[index].nameInitial == "พท.") {
               color = "#FF0000"
-            }else if(xxx[index].nameInitial =="พปชร."){
+            } else if (xxx[index].nameInitial == "พปชร.") {
               color = "#4876FF"
-            }else if(xxx[index].nameInitial =="รปช."){
+            } else if (xxx[index].nameInitial == "รปช.") {
               color = "#0000FF"
-            }else if(xxx[index].nameInitial =="ชทพ."){
+            } else if (xxx[index].nameInitial == "ชทพ.") {
               color = "#FF69B4"
-            }else if(xxx[index].nameInitial =="พช."){
+            } else if (xxx[index].nameInitial == "พ.พ.ช.") {
               color = "#CD0000"
-            }else if(xxx[index].nameInitial =="ปชช."){
+            } else if (xxx[index].nameInitial == "ปชช.") {
               color = "#FFFF00"
-            }else if(xxx[index].nameInitial =="ปช."){
+            } else if (xxx[index].nameInitial == "ปช.") {
               color = "#CD0000"
-            }else {
+            } else {
               color = "#7F7E7F"
             }
+            // else if (xxx[i].nameInitial == "ชทพ.") {
+            //   color = "#00008B"
+            // } else if (xxx[i].nameInitial == "ปชป.") {
+            //   color = "#00BFFF"
+            // } else {
+            //   color = "#FF33FE"
+            // }
             console.log("color");
             console.log(color);
             console.log("xxxx");
